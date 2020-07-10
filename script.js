@@ -36,10 +36,10 @@ for (var i = 0; i < workDay; i++) {
        />
      </div>
      <div class="col-7">
-       <input type="text" class="form-control" placeholder="" id="task-${i}" />
+       <input type="text" class="form-control" placeholder="Your Task Here" id="task-${i}" />
      </div>
      <div class="col-2">
-       <button class="btn btn-primary save form-control" id="${i}">Save</button>
+       <button class="btn btn-primary save form-control4" id="${i}">Save</button>
      </div>
    </div>
  </div>`);
