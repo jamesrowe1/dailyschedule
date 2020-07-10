@@ -25,7 +25,7 @@ var ampm = "AM";
 //create each of the lines of the calendar
 for (var i = 0; i < workDay; i++) {
   //this makes one line looking how we want
-  calendar.append(`<div class="row" value=${i}>
+  calendar.append(`<div class="input-group" value=${i}>
      <div class="col-3">
        <input
          type="text"
@@ -39,7 +39,7 @@ for (var i = 0; i < workDay; i++) {
        <input type="text" class="form-control" placeholder="" id="task-${i}" />
      </div>
      <div class="col-2">
-       <button class="btn btn-primary save" id="${i}">Save</button>
+       <button class="btn btn-primary save form-control" id="${i}">Save</button>
      </div>
    </div>
  </div>`);
@@ -106,7 +106,7 @@ function changeColors() {
   }
 
   //check each of the schedules rows and change color
-  $("#schedule > .row").each(function () {
+  $("#schedule > .input-group").each(function () {
     var row = $(this);
     var rowVal = Number(row.attr("value"));
 
