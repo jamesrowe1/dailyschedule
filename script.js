@@ -77,8 +77,11 @@ $(".save").on("click", function (event) {
 // THEN the saved events persist -->
 function onPageLoad() {
   var taskArr = JSON.parse(localStorage.getItem("tasks"));
+  console.log(taskArr);
   for (var i = 0; i < taskArr.length; i++) {
-    var task = localStorage.getItem("tasks");
-    $("#task-" + i).text(taskArr[i]);
+    console.log(taskArr[i]);
+    var inputId = "task-" + i;
+    console.log(inputId);
+    $("#task-0").val("hi");
   }
 }
