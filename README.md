@@ -2,7 +2,7 @@
 
 ## Project Title
 
-This is the %th Homework Assignment for the Columbia Coding Bootcamp. It is a Daily Planner. Prepare to be organized!
+This is the 5th Homework Assignment for the Columbia Coding Bootcamp. It is a Daily Planner. Prepare to be organized!
 
 ## Project Link
 
