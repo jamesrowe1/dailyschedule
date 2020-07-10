@@ -12,7 +12,7 @@ var calendar = $("#schedule");
 //global variables
 var currentDate = moment().format("dddd, MMMM Do YYYY");
 var workDay = 8;
-var tasks = [];
+var tasks = new Array(8);
 
 currentDateEl.text(currentDate);
 
@@ -21,7 +21,11 @@ var ampm = "AM";
 // WHEN I scroll down
 // THEN I am presented with timeblocks for standard business hours
 //var each class past present future, escape it to check
-for (var i = 0; i <= workDay; i++) {
+
+//run function on page load
+onPageLoad();
+
+for (var i = 0; i < workDay; i++) {
   calendar.append(`<div class="row">
      <div class="col-4">
        <input
@@ -53,12 +57,28 @@ for (var i = 0; i <= workDay; i++) {
 // THEN the text for that event is saved in local storage
 $(".save").on("click", function (event) {
   event.preventDefault();
+  //set the clickButton variable as the button that was clicked
   var clickButton = $(this);
-  var inputID = "task-" + clickButton.attr("id");
-  console.log($("#inputID"));
-  var textVal = document.getElementById("inputID").value;
-  console.log(textVal);
-  //array of the input tasks
+
+  //inputID is the ID of the save button
+  var inputID = "#task-" + clickButton.attr("id");
+
+  //set textVal as the task input
+  var textVal = $(inputID).val();
+
+  //array of the input tasks by index
+  tasks[clickButton.attr("id")] = textVal;
+
+  //store the array to local storage
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 });
+
 // WHEN I refresh the page
 // THEN the saved events persist -->
+function onPageLoad() {
+  var taskArr = JSON.parse(localStorage.getItem("tasks"));
+  for (var i = 0; i < taskArr.length; i++) {
+    var task = localStorage.getItem("tasks");
+    $("#task-" + i).text(taskArr[i]);
+  }
+}
