@@ -22,12 +22,11 @@ var ampm = "AM";
 // THEN I am presented with timeblocks for standard business hours
 //var each class past present future, escape it to check
 
-//run function on page load
-onPageLoad();
-
+//create each of the lines of the calendar
 for (var i = 0; i < workDay; i++) {
-  calendar.append(`<div class="row">
-     <div class="col-4">
+  //this makes one line looking how we want
+  calendar.append(`<div class="row" value=${i}>
+     <div class="col-3">
        <input
          type="text"
          class="form-control"
@@ -36,10 +35,10 @@ for (var i = 0; i < workDay; i++) {
          readonly
        />
      </div>
-     <div class="col-4">
+     <div class="col-7">
        <input type="text" class="form-control" placeholder="" id="task-${i}" />
      </div>
-     <div class="col-4">
+     <div class="col-2">
        <button class="btn btn-primary save" id="${i}">Save</button>
      </div>
    </div>
@@ -47,8 +46,9 @@ for (var i = 0; i < workDay; i++) {
   time = time === 12 ? 1 : time + 1;
   ampm = time > 11 ? "PM" : ampm;
 }
-// WHEN I view the timeblocks for that day
-// THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+
+//run function on page load
+onPageLoad();
 
 // WHEN I click into a timeblock
 // THEN I can enter an event
@@ -65,6 +65,7 @@ $(".save").on("click", function (event) {
 
   //set textVal as the task input
   var textVal = $(inputID).val();
+  console.log(textVal);
 
   //array of the input tasks by index
   tasks[clickButton.attr("id")] = textVal;
@@ -76,12 +77,50 @@ $(".save").on("click", function (event) {
 // WHEN I refresh the page
 // THEN the saved events persist -->
 function onPageLoad() {
-  var taskArr = JSON.parse(localStorage.getItem("tasks"));
-  console.log(taskArr);
-  for (var i = 0; i < taskArr.length; i++) {
-    console.log(taskArr[i]);
-    var inputId = "task-" + i;
-    console.log(inputId);
-    $("#task-0").val("hi");
+  //set the global tasks array to the local storage tasks
+  var checkTasks = JSON.parse(localStorage.getItem("tasks"));
+  if (checkTasks !== null) {
+    //only iterate if there is something in the array
+    tasks = checkTasks;
   }
+  //iterate through the array
+  for (var i = 0; i < tasks.length; i++) {
+    var inputId = "task-" + i;
+    //add each item in the array into the text boxes
+    $("#" + inputId).val(tasks[i]);
+  }
+
+  changeColors();
+}
+
+//change color based on time
+function changeColors() {
+  //get the current time
+  var currentTime = Number(moment().format("h"));
+
+  //modify the current time to make it match the indexes
+  if (currentTime <= 12 && currentTime >= 9) {
+    currentTime = currentTime - 9;
+  } else {
+    currentTime = currentTime + 3;
+  }
+
+  //check each of the schedules rows and change color
+  $("#schedule > .row").each(function () {
+    var row = $(this);
+    var rowVal = Number(row.attr("value"));
+
+    //if current row is before the current time, turn it orange
+    if (rowVal < currentTime) {
+      row.attr("style", "background-color:orange");
+    }
+    //if current row is the current time, turn it red
+    else if (rowVal === currentTime) {
+      row.attr("style", "background-color:red");
+    }
+    //if current row is after the current time, turn it blue
+    else {
+      row.attr("style", "background-color:blue");
+    }
+  });
 }
