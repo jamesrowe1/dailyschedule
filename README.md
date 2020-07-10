@@ -14,7 +14,7 @@ https://jamesrowe1.github.io/dailyschedule/
 
 ## Getting Started
 
-Type any tasks you have into the Task Input Box. To save a task, click the save button, and the task will be saved and persist through reloading the page.
+Type any tasks you have into the Task Input Box. To save a task, click the save button, and the task will be saved and persist through reloading the page. Daily tasks will not persist to the next day.
 
 ## Prerequisites
 

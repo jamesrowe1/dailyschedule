@@ -71,14 +71,14 @@ $(".save").on("click", function (event) {
   tasks[clickButton.attr("id")] = textVal;
 
   //store the array to local storage
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("tasks" + currentDate, JSON.stringify(tasks));
 });
 
 // WHEN I refresh the page
 // THEN the saved events persist -->
 function onPageLoad() {
   //set the global tasks array to the local storage tasks
-  var checkTasks = JSON.parse(localStorage.getItem("tasks"));
+  var checkTasks = JSON.parse(localStorage.getItem("tasks" + currentDate));
   if (checkTasks !== null) {
     //only iterate if there is something in the array
     tasks = checkTasks;
