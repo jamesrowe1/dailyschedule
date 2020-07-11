@@ -100,15 +100,15 @@ function changeColors() {
   var currentTime = Number(moment().format("h"));
 
   //modify the current time to make it match the indexes
-  if (currentTime < 12 && currentTime >= 9 && trueAMPM === "AM") {
+  if (currentTime < 12 && currentTime >= 9 && trueAMPM === "am") {
     currentTime = currentTime - 9;
-  } else if (currentTime === 12 && trueAMPM === "PM") {
+  } else if (currentTime === 12 && trueAMPM === "pm") {
     currentTime = 3;
-  } else if (currentTime >= 1 && currentTime < 5 && trueAMPM === "PM") {
+  } else if (currentTime >= 1 && currentTime < 5 && trueAMPM === "pm") {
     currentTime = currentTime + 3;
-  } else if (trueAMPM === "AM") {
+  } else if (trueAMPM === "am") {
     currentTime = 0;
-  } else if (trueAMPM === "PM") {
+  } else if (trueAMPM === "pm") {
     currentTime = 13;
   }
   console.log(trueAMPM);
