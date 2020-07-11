@@ -120,7 +120,7 @@ function changeColors() {
 
     //if current row is before the current time, turn it orange
     if (rowVal < currentTime) {
-      row.attr("style", "background-color:orange");
+      row.attr("style", "background-color:green");
     }
     //if current row is the current time, turn it red
     else if (rowVal === currentTime) {
@@ -128,7 +128,7 @@ function changeColors() {
     }
     //if current row is after the current time, turn it blue
     else {
-      row.attr("style", "background-color:blue");
+      row.attr("style", "background-color:yellow");
     }
   });
 }
