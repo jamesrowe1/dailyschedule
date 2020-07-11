@@ -14,7 +14,7 @@ https://jamesrowe1.github.io/dailyschedule/
 
 ## Getting Started
 
-Type any tasks you have into the Task Input Box. To save a task, click the save button, and the task will be saved and persist through reloading the page. Daily tasks will not persist to the next day.
+Type any tasks you have into the Task Input Box. To save a task, click the save button, and the task will be saved and persist through reloading the page. Daily tasks will not persist to the next day. If the row is green, then the time has passed and the task is in the past. If the row is red, it is the current time and the task muts be done now. If the row is yellow, the time (and task associated with it) are yet to come.
 
 ## Prerequisites
 
