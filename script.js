@@ -18,6 +18,8 @@ currentDateEl.text(currentDate);
 
 var time = 9;
 var ampm = "AM";
+
+var trueAMPM = moment().format("a");
 // WHEN I scroll down
 // THEN I am presented with timeblocks for standard business hours
 //var each class past present future, escape it to check
@@ -65,7 +67,6 @@ $(".save").on("click", function (event) {
 
   //set textVal as the task input
   var textVal = $(inputID).val();
-  console.log(textVal);
 
   //array of the input tasks by index
   tasks[clickButton.attr("id")] = textVal;
@@ -99,11 +100,18 @@ function changeColors() {
   var currentTime = Number(moment().format("h"));
 
   //modify the current time to make it match the indexes
-  if (currentTime <= 12 && currentTime >= 9) {
+  if (currentTime < 12 && currentTime >= 9 && trueAMPM === "AM") {
     currentTime = currentTime - 9;
-  } else {
+  } else if (currentTime === 12 && trueAMPM === "PM") {
+    currentTime = 3;
+  } else if (currentTime >= 1 && currentTime < 5 && trueAMPM === "PM") {
     currentTime = currentTime + 3;
+  } else if (trueAMPM === "AM") {
+    currentTime = 0;
+  } else if (trueAMPM === "PM") {
+    currentTime = 13;
   }
+  console.log(trueAMPM);
 
   //check each of the schedules rows and change color
   $("#schedule > .input-group").each(function () {
